@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .btn {
+            padding: 5px 10px;
+            margin: 5px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 3px;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+<h1>User Page</h1>
+<p>Username: <span th:text="${user.username}"></span></p>
+<p>Name: <span th:text="${user.name}"></span></p>
+<p>Surname: <span th:text="${user.surname}"></span></p>
+
+<br/>
+<br/>
+<a href="/logout" class="btn">Logout</a>
+
+</body>
+</html>
