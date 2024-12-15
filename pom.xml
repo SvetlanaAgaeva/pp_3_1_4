@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.svetlanaagaeva</groupId>
-    <artifactId>PP_3_1_2_Spring_Boot_Security</artifactId>
+    <artifactId>PP_3_1_3_Spring_Boot_Bootstrap</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>PP_3_1_2_Spring_Boot_Security</name>
-    <description>PP_3_1_2_Spring_Boot_Security</description>
+    <name>PP_3_3_Spring_Boot_Bootstrap</name>
+    <description>PP_3_1_3_Spring_Boot_Bootstrap</description>
     <url/>
     <licenses>
         <license/>

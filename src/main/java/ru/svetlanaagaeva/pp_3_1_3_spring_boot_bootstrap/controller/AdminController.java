@@ -1,14 +1,16 @@
-package ru.svetlanaagaeva.pp_3_1_2_spring_boot_security.controller;
+package ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.svetlanaagaeva.pp_3_1_2_spring_boot_security.model.Role;
-import ru.svetlanaagaeva.pp_3_1_2_spring_boot_security.model.User;
-import ru.svetlanaagaeva.pp_3_1_2_spring_boot_security.service.UserService;
+import ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.model.Role;
+import ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.model.User;
+import ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.service.UserService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -21,6 +23,7 @@ public class AdminController {
     }
 
     @RequestMapping
+
     public String ListOfPeople(Model model) {
         List<User> allUsers = userService.getAllUsers();
         User userAuth = userService.getAuthUser();
@@ -33,18 +36,21 @@ public class AdminController {
     }
 
     @GetMapping("/new")
+
     public String showAddUserForm(Model model) {
         model.addAttribute("newUser", new User());
         return "new";
     }
 
     @PostMapping("/create")
+
     public String create(@ModelAttribute User user) {
         userService.saveUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/edit/{id}")
+
     public String showEditForm(@PathVariable("id") Long id, Model model) {
         try {
             User user = userService.getUserById(id);
@@ -57,12 +63,14 @@ public class AdminController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") Long id, @ModelAttribute("user") User user) {
+
+    public String editUser( @PathVariable("id") Long id,@ModelAttribute("usEdit") User user) {
         userService.updateUser(user);
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "/delete/{id}")
+
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUserById(id);
         return "redirect:/admin";

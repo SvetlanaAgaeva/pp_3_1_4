@@ -1,11 +1,11 @@
-package ru.svetlanaagaeva.pp_3_1_2_spring_boot_security.repository;
+package ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.svetlanaagaeva.pp_3_1_2_spring_boot_security.model.Role;
+import ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.model.Role;
 
 import java.util.Optional;
-@Repository
+//@Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
     Optional<Role> findByName(String name);
 }
