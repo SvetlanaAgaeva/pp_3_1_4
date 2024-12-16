@@ -9,8 +9,8 @@
 <h1>Add New User</h1>
 
 <form action="/admin/create" method="post" th:object="${newUser}">
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" required="required" th:value="*{username}" /><br />
+  <label for="email">Email:</label>
+  <input type="text" id="email" name="email" required="required" th:value="*{ email}" /><br />
   <br />
   <br />
 

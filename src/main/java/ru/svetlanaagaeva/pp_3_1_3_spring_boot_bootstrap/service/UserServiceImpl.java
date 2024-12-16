@@ -33,10 +33,10 @@ public class UserServiceImpl implements UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsernameIgnoreCase(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmailIgnoreCase(email);
         if (user == null) {
-            throw new UsernameNotFoundException("Incorrect username or password");
+            throw new UsernameNotFoundException("Incorrect email or password");
 
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(),
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
         User updatedUser = getUserById(user.getId());
         updatedUser.setName(user.getName());
         updatedUser.setSurname(user.getSurname());
-        updatedUser.setUsername(user.getUsername());
+        updatedUser.setEmail(user.getEmail());
         updatedUser.setPassword((bCryptPasswordEncoder.encode(user.getPassword())));
         updatedUser.setRoles(user.getRoles());
         userRepository.save(updatedUser);
@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getAuthUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return userRepository.findByUsernameIgnoreCase(auth.getName());
+        return userRepository.findByEmailIgnoreCase(auth.getName());
     }
 
 //    @Autowired

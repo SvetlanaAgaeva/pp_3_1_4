@@ -34,7 +34,7 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
 
         @Override
         public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                Authentication authentication) throws IOException, ServletException {
+                Authentication authentication) throws IOException {
 
             if (authentication.getAuthorities().stream()
                     .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
