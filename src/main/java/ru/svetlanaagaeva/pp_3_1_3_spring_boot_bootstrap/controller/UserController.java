@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping
-    //@RequestMapping("/user")
+
     public String showUserPage(Model model) {
         User userAuth = userService.getAuthUser();
         if (userAuth == null) {
@@ -49,11 +49,6 @@ public class UserController {
         }
         return "user";
     }
-//@RequestMapping("/user")
-//public String showUserProfile(Model model) {
-//    User userAuth = userService.getAuthUser();
-//    model.addAttribute("user", userAuth);
-//    return "user";
-//}
+
 
 }

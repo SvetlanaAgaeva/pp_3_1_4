@@ -22,18 +22,4 @@ public interface UserService extends UserDetailsService {
 
     User getAuthUser();
 
-//    List<User> getAllUsers();
-//
-//    List<Role> getAllRoles();
-//
-//    void saveUser(User user);
-//
-//    void updateUser(User user);
-//
-//    User getById(Long id);
-//
-//    void deleteById(Long id);
-//
-//    User getAuthUser();
-//    Role getName();
 }

@@ -30,7 +30,7 @@ public class AdminController {
         List<Role> allRoles = userService.getAllRoles();
         model.addAttribute("users", allUsers);
         model.addAttribute("user", userAuth);
-        model.addAttribute("allRoles", allRoles);
+        model.addAttribute("allRoles", userService.getAllRoles());
         model.addAttribute("newUser", new User());
         return "admin";
     }
@@ -38,7 +38,11 @@ public class AdminController {
     @GetMapping("/new")
 
     public String showAddUserForm(Model model) {
-        model.addAttribute("newUser", new User());
+        User newUser = new User();
+        List<Role> allRoles = userService.getAllRoles();
+        model.addAttribute("newUser", newUser);
+        model.addAttribute("allRoles", allRoles);
+
         return "new";
     }
 
@@ -54,6 +58,8 @@ public class AdminController {
     public String showEditForm(@PathVariable("id") Long id, Model model) {
         try {
             User user = userService.getUserById(id);
+            List<Role> allRoles = userService.getAllRoles();
+            model.addAttribute("allRoles", allRoles);
             model.addAttribute("user", user);
         } catch (Exception e) {
             model.addAttribute("errorMessage", e.getMessage());
@@ -64,7 +70,11 @@ public class AdminController {
 
     @PostMapping("/edit/{id}")
 
-    public String editUser( @PathVariable("id") Long id,@ModelAttribute("usEdit") User user) {
+    public String editUser( @PathVariable("id") Long id,@ModelAttribute("user") User user) {
+        User existingUser = userService.getUserById(id);
+        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+            user.setRoles(existingUser.getRoles());
+        }
         userService.updateUser(user);
         return "redirect:/admin";
     }

@@ -49,6 +49,12 @@
 <br/>
 <br/>
 <h1>Edit</h1>
+<style>
+    select {
+        width: 200px;
+        height: 50px;
+    }
+</style>
 <form action="#" th:action="@{/admin/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
     <input type="hidden" th:field="*{id}"/>
 
@@ -72,7 +78,14 @@
     <br />
     <br />
 
-
+    <label for="roles">Roles:</label>
+    <select id="roles" name="roles" multiple="multiple">
+        <option th:each="role : ${allRoles}"
+                th:value="${role.id}"
+                th:text="${role.name}"
+                th:selected="${user.roles.contains(role)}">
+        </option>
+    </select><br/>
     <button type="submit">Save</button>
 </form>
 
