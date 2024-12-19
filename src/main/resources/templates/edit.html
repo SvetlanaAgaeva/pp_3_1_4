@@ -23,8 +23,8 @@
 <form action="#" th:action="@{/admin/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
   <input type="hidden" th:field="*{id}"/>
 
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" required="required" th:value="*{username}"/><br/>
+  <label for="email">Username:</label>
+  <input type="text" id="email" name="email" required="required" th:value="*{email}"/><br/>
   <br/>
   <br/>
 
@@ -40,6 +40,11 @@
 
   <label for="surname">Surname:</label>
   <input type="text" id="surname" name="surname" required="required" th:value="*{surname}"/><br/>
+  <br/>
+  <br/>
+
+  <label for="age">Name:</label>
+  <input type="text" id="age" name="age" required="required" th:value="*{age}"/><br/>
   <br/>
   <br/>
 
