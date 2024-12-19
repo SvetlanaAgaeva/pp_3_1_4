@@ -53,6 +53,21 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+// его код
+//    @RequestMapping(method = RequestMethod.POST, value = "/edit/{id}")
+//    public String editUser(@ModelAttribute("usEdit") User user) {
+//        userService.updateUser(user);
+//        return "redirect:/admin";
+//    }
+
+//    @PostMapping("/edit/{id}")
+//    public String editUser(@PathVariable Long id, @ModelAttribute("user") User user) {
+//        userService.updateUser(user);
+//        return "redirect:/admin";
+//    }
+
+
+
     @GetMapping("/edit/{id}")
 
     public String showEditForm(@PathVariable("id") Long id, Model model) {
@@ -69,7 +84,7 @@ public class AdminController {
     }
 
     @PostMapping("/edit/{id}")
-
+//@PostMapping
     public String editUser( @PathVariable("id") Long id,@ModelAttribute("user") User user) {
         User existingUser = userService.getUserById(id);
         if (user.getRoles() == null || user.getRoles().isEmpty()) {

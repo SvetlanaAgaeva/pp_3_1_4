@@ -35,6 +35,12 @@
   <input type="text" id="surname" name="surname" required="required" th:value="*{surname}" /><br />
   <br />
   <br />
+
+  <label for="age">Age:</label>
+  <input type="text" id="age" name="age" required="required" th:value="*{age}" /><br />
+  <br />
+  <br />
+
   <label for="roles">Roles:</label>
   <select id="roles" name="roles" multiple="multiple">
     <option th:each="role : ${allRoles}"
