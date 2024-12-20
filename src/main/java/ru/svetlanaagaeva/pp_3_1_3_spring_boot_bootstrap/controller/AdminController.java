@@ -35,18 +35,18 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping("/new")
+//    @GetMapping("/new")
+//
+//    public String showAddUserForm(Model model) {
+//        User newUser = new User();
+//        List<Role> allRoles = userService.getAllRoles();
+//        model.addAttribute("newUser", newUser);
+//        model.addAttribute("allRoles", allRoles);
+//
+//        return "new";
+//    }
 
-    public String showAddUserForm(Model model) {
-        User newUser = new User();
-        List<Role> allRoles = userService.getAllRoles();
-        model.addAttribute("newUser", newUser);
-        model.addAttribute("allRoles", allRoles);
-
-        return "new";
-    }
-
-    @PostMapping("/create")
+    @PostMapping("/new")
 
     public String create(@ModelAttribute User user) {
         userService.saveUser(user);
@@ -60,39 +60,39 @@ public class AdminController {
 //        return "redirect:/admin";
 //    }
 
-//    @PostMapping("/edit/{id}")
-//    public String editUser(@PathVariable Long id, @ModelAttribute("user") User user) {
-//        userService.updateUser(user);
-//        return "redirect:/admin";
-//    }
-
-
-
-    @GetMapping("/edit/{id}")
-
-    public String showEditForm(@PathVariable("id") Long id, Model model) {
-        try {
-            User user = userService.getUserById(id);
-            List<Role> allRoles = userService.getAllRoles();
-            model.addAttribute("allRoles", allRoles);
-            model.addAttribute("user", user);
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            return "error";
-        }
-        return "edit";
-    }
-
     @PostMapping("/edit/{id}")
-//@PostMapping
-    public String editUser( @PathVariable("id") Long id,@ModelAttribute("user") User user) {
-        User existingUser = userService.getUserById(id);
-        if (user.getRoles() == null || user.getRoles().isEmpty()) {
-            user.setRoles(existingUser.getRoles());
-        }
+    public String editUser(@PathVariable Long id, @ModelAttribute("user") User user) {
         userService.updateUser(user);
         return "redirect:/admin";
     }
+
+
+
+//    @GetMapping("/edit/{id}")
+//
+//    public String showEditForm(@PathVariable("id") Long id, Model model) {
+//        try {
+//            User user = userService.getUserById(id);
+//            List<Role> allRoles = userService.getAllRoles();
+//            model.addAttribute("allRoles", allRoles);
+//            model.addAttribute("user", user);
+//        } catch (Exception e) {
+//            model.addAttribute("errorMessage", e.getMessage());
+//            return "error";
+//        }
+//        return "admin";
+//    }
+//
+//    @PostMapping("/edit/{id}")
+//
+//    public String editUser( @PathVariable("id") Long id,@ModelAttribute("user") User user) {
+//        User existingUser = userService.getUserById(id);
+//        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+//            user.setRoles(existingUser.getRoles());
+//        }
+//        userService.updateUser(user);
+//        return "redirect:/admin";
+//    }
 
     @RequestMapping(value = "/delete/{id}")
 
