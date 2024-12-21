@@ -26,7 +26,7 @@ public class Pp313SpringBootApplication {
 
 //
 //        String storedPassword = "$2a$10$whkI/my0NkUtu73dnPpYfOqaHB8JsnBwWglV/DiTtfLHnSgex2/iu";  // Подставьте зашифрованный пароль из базы данных
-////
+
 //                //     Проверка пароля
 //        boolean passwordMatches = encoder.matches(rawPassword, storedPassword);
 //        System.out.println("Пароль совпадает: " + passwordMatches);

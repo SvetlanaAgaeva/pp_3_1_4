@@ -27,12 +27,14 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmailIgnoreCase(email);
@@ -82,23 +84,6 @@ public class UserServiceImpl implements UserService {
         user.setRoles(managedRoles);
         userRepository.save(user);
     }
-//    @Override
-//    public void saveUser(User user) {
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        if (user.getRoles() == null || user.getRoles().isEmpty()) {
-//            Optional<Role> userRoleOptional = roleRepository.findByName("ROLE_USER");
-//            if (userRoleOptional.isPresent()) {
-//                Set<Role> roles = new HashSet<>();
-//                roles.add(userRoleOptional.get());
-//                user.setRoles(roles);
-//                //user.setRoles(Collections.singleton(userRoleOptional.get()));
-//            } else {
-//                throw new RuntimeException("Role USER not found");
-//            }
-//        }
-//        userRepository.save(user);
-//    }
-
 
     @Override
     public void updateUser(User user) {
@@ -130,11 +115,6 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
 
     }
-//    public User getAuthUser() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        return (User) authentication.getPrincipal();  // Получаем пользователя из контекста безопасности
-//    }
-
 
     @Override
     public User getAuthUser() {
@@ -142,93 +122,5 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmailIgnoreCase(auth.getName());
     }
 
-//    @Autowired
-//    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.userRepository = userRepository;
-//        this.roleRepository = roleRepository;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-//    }
-//
-//
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = userRepository.findByName(username);  // Вместо findByUsername, используем findByEmail
-//        if (user == null) {
-//            throw new UsernameNotFoundException("Incorrect username or password");
-//        }
-//        return new org.springframework.security.core.userdetails.User(user.getUsername(),
-//                user.getPassword(), user.getAuthorities());
-//    }
-//
-//
-//    @Override
-//    public List<User> getAllUsers() {
-//        return userRepository.findAll();
-//    }
-//
-//    @Override
-//    public List<Role> getAllRoles() {
-//        return roleRepository.findAll();
-//    }
-//
-//
-//    @Override
-//    public User getById(Long id) {
-//        return userRepository.getById( id);
-//               //
-//
-//    }
-//
-//
-////    @Override
-////    public void saveUser(User user) {
-////        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-////        if (user.getRoles() == null || user.getRoles().isEmpty()) {
-////            Optional<Role> userRoleOptional = roleRepository.findByName("USER");
-////            if (userRoleOptional.isPresent()) {
-////                user.setRoles(Collections.singleton(userRoleOptional.get()));
-////            } else {
-////                throw new RuntimeException("Role USER not found");
-////            }
-////        }
-////        userRepository.save(user);
-////    }
-//
-//    @Override
-//    public void saveUser(User user) {
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        userRepository.save(user);
-//    }
-////    @Override
-////    public void updateUser(User user) {
-////
-////        User updatedUser = getUserById(user.getId());
-////        updatedUser.setName(user.getName());
-////        updatedUser.setSurname(user.getSurname());
-////        updatedUser.setEmail(user.getEmail());
-////        updatedUser.setPassword((bCryptPasswordEncoder.encode(user.getPassword())));
-////        updatedUser.setRoles(user.getRoles());
-////        userRepository.save(updatedUser);
-////    }
-//@Override
-//public void updateUser(User user) {
-//    userRepository.save(user);
-//}
-//
-//    @Override
-//    public void deleteById(Long id) {
-//        User user = userRepository.findById(id).get();
-//        user.setRoles(null);
-//       // userRepository.save(user);
-//        userRepository.deleteById(id);
-//
-//    }
-//
-//    @Override
-//    public User getAuthUser() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        return userRepository.findByName(auth.getName());
-//    }
-//    @Override
-//    public Role getName(){ return getName();}
+
 }

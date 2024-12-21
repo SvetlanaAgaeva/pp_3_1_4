@@ -40,8 +40,7 @@ public class WebSecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/login")
                       .loginProcessingUrl("/login")
-                        .usernameParameter("email")  // Убедитесь, что используется email как параметр
-//                        .passwordParameter("password")
+                        .usernameParameter("email")
                         .successHandler(successUserHandler)
                         .permitAll()
                 )
