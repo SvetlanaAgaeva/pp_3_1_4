@@ -1,21 +1,19 @@
-package ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.service;
+package ru.svetlanaagaeva.pp_3_1_4_spring_boot_bootstrap.service;
 
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.model.Role;
-import ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.model.User;
-import ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.repository.RoleRepository;
-import ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.repository.UserRepository;
+import ru.svetlanaagaeva.pp_3_1_4_spring_boot_bootstrap.model.Role;
+import ru.svetlanaagaeva.pp_3_1_4_spring_boot_bootstrap.model.User;
+import ru.svetlanaagaeva.pp_3_1_4_spring_boot_bootstrap.repository.RoleRepository;
+import ru.svetlanaagaeva.pp_3_1_4_spring_boot_bootstrap.repository.UserRepository;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -50,6 +48,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
+            throw new RuntimeException("No users found");
+        }
         users.forEach(user -> Hibernate.initialize(user.getRoles()));
         return users;
     }
@@ -116,11 +117,38 @@ public class UserServiceImpl implements UserService {
 
     }
 
+              // метод с выводом в консоль
     @Override
     public User getAuthUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return userRepository.findByEmailIgnoreCase(auth.getName());
+
+        User user = userRepository.findByEmailIgnoreCase(auth.getName());
+        if (user != null) {
+            System.out.println("User found: " + user.getName());
+            // Логируем роли, если они загружены
+            user.getRoles().forEach(role -> System.out.println("Role: " + role.getName()));
+        }
+        return user;
     }
+                 // то же самое,но без вывода в консоль
+
+//    public User getAuthUser() {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//
+//        // Получаем пользователя по email
+//        User user = userRepository.findByEmailIgnoreCase(auth.getName());
+//
+//        // Если пользователь найден, просто возвращаем его
+//        if (user != null) {
+//            // Инициализируем роли (если они не инициализированы)
+//            Hibernate.initialize(user.getRoles());
+//
+//            // Здесь мы не выводим роли в консоль, просто возвращаем пользователя
+//            // Роли будут доступны в объекте user.getRoles(), если это нужно для дальнейшего использования
+//        }
+//
+//        return user;
+//    }
 
 
 }

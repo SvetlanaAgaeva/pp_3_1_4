@@ -1,8 +1,7 @@
-package ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.repository;
+package ru.svetlanaagaeva.pp_3_1_4_spring_boot_bootstrap.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.model.Role;
+import ru.svetlanaagaeva.pp_3_1_4_spring_boot_bootstrap.model.Role;
 
 import java.util.Optional;
 //@Repository

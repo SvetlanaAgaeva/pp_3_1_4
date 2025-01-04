@@ -1,4 +1,4 @@
-package ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.configs;
+package ru.svetlanaagaeva.pp_3_1_4_spring_boot_bootstrap.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,9 @@
-package ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap.model;
+package ru.svetlanaagaeva.pp_3_1_4_spring_boot_bootstrap.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
-import jakarta.validation.constraints.Email;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "users_bootstrap")
 public class User implements UserDetails {
     @Id
@@ -36,6 +38,7 @@ public class User implements UserDetails {
     @Column(name = "age")
     private Integer age;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+//    @JsonIgnore
     @JoinTable(
             name = "users_bootstrap_roles",
             joinColumns = @JoinColumn(name = "user_id"),

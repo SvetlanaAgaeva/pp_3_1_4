@@ -1,16 +1,15 @@
-package ru.svetlanaagaeva.pp_3_1_3_spring_boot_bootstrap;
+package ru.svetlanaagaeva.pp_3_1_4_spring_boot_bootstrap;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @SpringBootApplication
-public class Pp313SpringBootApplication {
+public class Pp314SpringBootApplication {
 
     public static void main(String[] args) {
 
-       SpringApplication.run(Pp313SpringBootApplication.class, args);
+       SpringApplication.run(Pp314SpringBootApplication.class, args);
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
                     // Этот код мне нужен для проверки шифрования

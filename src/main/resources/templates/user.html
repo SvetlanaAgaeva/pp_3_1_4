@@ -3,117 +3,18 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Panel</title>
     <!-- Подключаем Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <title>User Panel</title>
 
-
-    <style>
-        /*Стили для верхней панели*/
-        .top-bar {
-
-            background-color: black;
-            color: white;
-            height: 50px;
-            padding: 10px 20px;
-            width: 100%;
-            display: flex; /* Для выравнивания содержимого */
-            justify-content: space-between; /* Разделение контента на левую и правую части */
-            align-items: center; /* Выравнивание по вертикали */
-
-
-        }
-
-        .top-bar a {
-            color: white; /* Белый текст для ссылки */
-            text-decoration: none; /* Убираем подчеркивание */
-        }
-
-
-        .container-fluid {
-            display: flex;
-            height: 100vh; /* Высота на весь экран */
-            margin: 0;
-            padding: 0;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: white;
-            padding: 20px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar a {
-            color: #007bff;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            display: block;
-            background-color: white;
-            margin: 10px 0;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #f0f0f0; /* Подсветка при наведении */
-        }
-
-        .sidebar a.active {
-            background-color: #007bff; /* Синий фон */
-            color: white; /* Белые буквы */
-        }
-
-        .sidebar a:not(.active) {
-            color: #007bff; /* Голубые буквы */
-            background-color: white; /* Белый фон */
-        }
-
-
-        .main-content {
-            flex-grow: 1; /* Занимает всё оставшееся пространство */
-            background-color: #f8f9fa;
-            padding: 20px;
-            overflow-y: auto; /* Прокрутка для длинного контента */
-        }
-
-        table {
-            width: 100%; /* Таблица на всю ширину правого блока */
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
 </head>
 
 <body>
 <div class="top-bar d-flex justify-content-between">
-    <div>
-        <span th:text="${#authentication.name}"></span>
-        <span th:text="' with roles: '"></span>
-        <span th:each="role : ${#authentication.authorities}">
-
-            <span th:text="${#strings.replace(role.authority, 'ROLE_', '')}">, </span>
-
-        </span>
-    </div>
+    <div id="user-panel"></div>
     <div>
         <a href="/logout" class="btn">Logout</a>
 
@@ -145,7 +46,7 @@
             <div class="tab-pane fade show active" id="users" role="tabpanel">
 
                 <h3>About user</h3>
-                <table>
+                <table id="user-table">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -156,25 +57,17 @@
                         <th>Role</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td th:text="${user.id}">1</td>
-                        <td th:text="${user.name}">First Name</td>
-                        <td th:text="${user.surname}">Last Name</td>
-                        <td th:text="${user.age}">Age</td>
-                        <td th:text="${user.email}">Email</td>
-                        <td>
-
-                            <span th:each="role : ${#authentication.authorities}"
-                                  th:text="${#strings.replace(role.authority, 'ROLE_', '')} + ' '">,</span>
-                        </td>
-                    </tr>
+                    <tbody id="user-data">
+                    <!-- Данные о пользователе будут вставляться сюда через JavaScript -->
                     </tbody>
+
                 </table>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/user.js"></script>
+
 </body>
 </html>
 

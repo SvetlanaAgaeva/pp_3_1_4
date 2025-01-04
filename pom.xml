@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.svetlanaagaeva</groupId>
-    <artifactId>PP_3_1_3_Spring_Boot_Bootstrap</artifactId>
+    <artifactId>PP_3_1_4</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>PP_3_3_Spring_Boot_Bootstrap</name>
-    <description>PP_3_1_3_Spring_Boot_Bootstrap</description>
+    <name>PP_3_1_4</name>
+    <description>PP_3_1_4</description>
     <url/>
     <licenses>
         <license/>
@@ -53,6 +53,20 @@
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.5.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.7.1</version>
         </dependency>
 
         <dependency>
