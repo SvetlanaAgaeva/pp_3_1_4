@@ -87,6 +87,7 @@ const saveButton = document.querySelector('button[type="submit"]');
 
 // Добавляем обработчик события для нажатия клавиши в форме
 editUserForm.addEventListener("keydown", async function (event) {
+
     // Проверяем, была ли нажата клавиша Enter (код клавиши 13)
     if (event.key === "Enter") {
         event.preventDefault();  // Предотвращаем стандартное поведение (отправка формы)
@@ -181,6 +182,7 @@ const newUserForm = document.getElementById("newUserForm");
 
 newUserForm.addEventListener('submit', async function (e) {
     e.preventDefault(); // Остановка стандартной отправки
+
 
     // Собираем данные
     let newUser = {

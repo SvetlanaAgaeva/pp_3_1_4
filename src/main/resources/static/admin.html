@@ -28,10 +28,10 @@
     <div class="col-2" style="padding: 0; padding-top: 15px">
         <ul class="nav nav-pills flex-column" id="sidebar-menu">
             <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                <a class="nav-link active" href="/admin">Admin</a>
+                <a class="nav-link active" href="/admin.html">Admin</a>
             </li>
             <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
-                <a class="nav-link" href='/user' id="userLink">User</a>
+                <a class="nav-link" href='/user.html' id="userLink">User</a>
             </li>
         </ul>
     </div>
@@ -43,7 +43,8 @@
         <!-- Вкладки -->
         <ul class="nav nav-tabs" id="myTabs">
             <li class="nav-item">
-                <a class="nav-link active" id="users-tab" data-toggle="tab" href="/admin" role="tab">Users table</a>
+                <a class="nav-link active" id="users-tab" data-toggle="tab" href="/admin.html" role="tab">Users
+                    table</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="new-user-tab" href="#newUserModal" role="tab" data-toggle="modal">New User</a>
@@ -115,7 +116,8 @@
                                 <div class="form-group">
                                     <label for="edit-age">Age</label>
                                     <input type="number" id="edit-age" name="age"
-                                           class="form-control"/>
+                                           class="form-control" min="0" max="120" step="1"/>
+                                    <div class="error-message" id="age-error" style="color: red; display: none;"></div>
                                 </div>
 
                                 <div class="form-group">
@@ -236,7 +238,7 @@
                     <div class="form-group">
                         <label for="new-age">Age</label>
                         <input type="number" id="new-age" name="age" class="form-control" placeholder="Age"
-                               required>
+                               required min="0" max="120" step="1">
                     </div>
                     <div class="form-group">
                         <label for="new-email">Email</label>
@@ -262,6 +264,25 @@
     </div>
 </div>
 <script type="text/javascript" src="/admin.js"></script>
+<script>
+    // Получаем поле ввода возраста
+    const ageInput = document.getElementById('edit-age');
+    const ageError = document.getElementById('age-error');
+
+    // Обработчик события для отслеживания изменения данных в поле ввода
+    ageInput.addEventListener('input', function () {
+        // Получаем введенный возраст
+        const age = ageInput.value;
+
+        // Проверяем корректность введенного возраста
+        if (age < 0 || age > 120) {
+            ageError.textContent = "Age must be between 0 and 120.";  // Показываем ошибку
+            ageError.style.display = "block";  // Отображаем сообщение
+        } else {
+            ageError.style.display = "none";  // Скрываем сообщение, если возраст корректен
+        }
+    });
+</script>
 </body>
 </html>
 

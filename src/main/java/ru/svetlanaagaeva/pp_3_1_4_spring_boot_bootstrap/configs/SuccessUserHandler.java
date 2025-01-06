@@ -20,9 +20,9 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
 
         if (authentication.getAuthorities().stream()
                 .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-            response.sendRedirect("/admin");
+            response.sendRedirect("/admin.html");
         } else {
-            response.sendRedirect("/user");
+            response.sendRedirect("/user.html");
         }
     }
 

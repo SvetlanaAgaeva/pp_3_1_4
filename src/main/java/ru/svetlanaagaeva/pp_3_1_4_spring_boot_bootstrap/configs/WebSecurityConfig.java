@@ -31,21 +31,21 @@ public class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/login.html").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
 
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
+                        .loginPage("/login.html")
                       .loginProcessingUrl("/login")
                         .usernameParameter("email")
                         .successHandler(successUserHandler)
                         .permitAll()
                 )
                 .logout(logout -> logout.logoutUrl("/logout")
-                        .logoutSuccessUrl("/login").permitAll());
+                        .logoutSuccessUrl("/login.html").permitAll());
 
         return http.build();
     }

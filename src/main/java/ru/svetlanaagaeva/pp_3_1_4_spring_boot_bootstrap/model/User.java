@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -36,6 +38,8 @@ public class User implements UserDetails {
     private String email;
 
     @Column(name = "age")
+    @Min(value = 0, message = "Age must be more than or equal to 0")
+    @Max(value = 120, message = "Age must be less than or equal to 120")
     private Integer age;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 //    @JsonIgnore
